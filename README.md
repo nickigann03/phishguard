@@ -1,4 +1,4 @@
-# PhishGuard: Email Security Platform
+# PhishGuard: Email Security & Phishing Simulation Platform
 ## Architecture Design Document v1.0
 
 PhishGuard is a modular, AI-enhanced email security platform comprising of 

@@ -31,13 +31,16 @@ docker-compose up -d --build
 http://localhost:8000/api/docs
 ```
 
-### AI Configuration (Optional)
-To enable real AI Template Generation (Gemini), update your `.env` file:
+### AI Configuration (Recommended)
+We use **Groq** (Free Tier) for ultra-fast template generation with Llama 3.
+
+1. Get a key at [console.groq.com/keys](https://console.groq.com/keys)
+2. Update `.env`:
 ```env
-AI_PROVIDER=gemini
-AI_API_KEY=your_google_ai_key_here
+AI_PROVIDER=groq
+AI_API_KEY=gsk_your_key_here
 ```
-If no key is provided, the system falls back to a Mock Generator for testing.
+*(Gemini is also supported by setting AI_PROVIDER=gemini)*
 
 ### Key Endpoints
 - **POST** `/api/v1/auth/register` - Create new admin account

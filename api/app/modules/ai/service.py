@@ -17,10 +17,54 @@ class AIService:
         """
         if self.provider == "gemini":
             return await self._generate_gemini(request)
+        elif self.provider == "groq":
+            return await self._generate_groq(request)
         else:
             # Fallback to Mock for now
             return self._generate_mock(request)
 
+    async def _generate_groq(self, request: GenerateTemplateRequest) -> GeneratedTemplateContent:
+        try:
+            from groq import Groq
+            
+            if not self.api_key:
+                logger.warning("AI_API_KEY is missing. Falling back to mock.")
+                return self._generate_mock(request)
+            
+            # Groq client is sync by default, but fast enough. 
+            # In high scale prod, run in threadpool or use async client if available.
+            client = Groq(api_key=self.api_key)
+            
+            prompt = self._construct_prompt(request)
+            
+            chat_completion = client.chat.completions.create(
+                messages=[
+                    {
+                        "role": "system",
+                        "content": "You are a specialized cybersecurity assistant that generates JSON output only."
+                    },
+                    {
+                        "role": "user",
+                        "content": prompt,
+                    }
+                ],
+                model=self.model,
+                response_format={"type": "json_object"}, # Groq supports JSON mode!
+                temperature=0.7,
+            )
+            
+            content = chat_completion.choices[0].message.content
+            data = json.loads(content)
+            
+            return GeneratedTemplateContent(**data)
+            
+        except ImportError:
+            logger.error("groq library not installed. Using mock.")
+            return self._generate_mock(request)
+        except Exception as e:
+            logger.error(f"Groq generation failed: {e}")
+            return self._generate_mock(request)
+            
     async def _generate_gemini(self, request: GenerateTemplateRequest) -> GeneratedTemplateContent:
         try:
             import google.generativeai as genai

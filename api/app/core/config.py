@@ -58,9 +58,9 @@ class Settings(BaseSettings):
     # ============================================================================
     # AI SERVICE SETTINGS
     # ============================================================================
-    AI_PROVIDER: Literal["openai", "anthropic", "gemini", "local"] = "gemini"
+    AI_PROVIDER: Literal["openai", "anthropic", "gemini", "groq", "local"] = "groq"
     AI_API_KEY: str = ""
-    AI_MODEL: str = "gemini-pro"
+    AI_MODEL: str = "llama3-70b-8192"
     
     # ============================================================================
     # EMAIL SERVICE SETTINGS (for sending phishing simulations)

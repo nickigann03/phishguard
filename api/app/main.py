@@ -198,3 +198,6 @@ app.include_router(tracking_router, prefix="/api/v1/track", tags=["Tracking"])
 
 from app.modules.analytics.router import router as analytics_router
 app.include_router(analytics_router, prefix="/api/v1/analytics", tags=["Analytics"])
+
+from app.modules.ai.router import router as ai_router
+app.include_router(ai_router, prefix="/api/v1/ai", tags=["AI Integration"])

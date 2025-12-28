@@ -31,6 +31,14 @@ docker-compose up -d --build
 http://localhost:8000/api/docs
 ```
 
+### AI Configuration (Optional)
+To enable real AI Template Generation (Gemini), update your `.env` file:
+```env
+AI_PROVIDER=gemini
+AI_API_KEY=your_google_ai_key_here
+```
+If no key is provided, the system falls back to a Mock Generator for testing.
+
 ### Key Endpoints
 - **POST** `/api/v1/auth/register` - Create new admin account
 - **POST** `/api/v1/auth/login` - Get Access Token

@@ -58,9 +58,9 @@ class Settings(BaseSettings):
     # ============================================================================
     # AI SERVICE SETTINGS
     # ============================================================================
-    AI_PROVIDER: Literal["openai", "anthropic", "local"] = "anthropic"
+    AI_PROVIDER: Literal["openai", "anthropic", "gemini", "local"] = "gemini"
     AI_API_KEY: str = ""
-    AI_MODEL: str = "claude-3-5-sonnet-20241022"
+    AI_MODEL: str = "gemini-pro"
     
     # ============================================================================
     # EMAIL SERVICE SETTINGS (for sending phishing simulations)

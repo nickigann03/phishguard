@@ -1,0 +1,454 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&display=swap');
+
+@import "tailwindcss";
+
+/* ============================================
+   PHISHGUARD DESIGN LANGUAGE
+   Enterprise Dark Mode | Linear + Stripe Inspired
+   ============================================ */
+
+:root {
+  /* Core Palette */
+  --bg-base: #0B0E14;
+  --bg-elevated: #101318;
+  --bg-surface: #161A21;
+  --bg-hover: #1C2028;
+
+  /* Brand */
+  --cyber-green: #00FF41;
+  --cyber-emerald: #10B981;
+  --electric-blue: #3B82F6;
+  --high-voltage-orange: #F97316;
+  --danger-red: #EF4444;
+
+  /* Zinc Scale */
+  --zinc-700: #3F3F46;
+  --zinc-800: #27272A;
+  --zinc-900: #18181B;
+
+  /* Text */
+  --text-primary: #FAFAFA;
+  --text-secondary: #A1A1AA;
+  --text-muted: #71717A;
+
+  /* Borders */
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --border-default: #27272A;
+  --border-hover: rgba(255, 255, 255, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 14px;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(180deg, #09090B 0%, var(--bg-base) 100%);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.01em;
+  min-height: 100vh;
+}
+
+/* Mono for data */
+.font-mono {
+  font-family: 'Geist Mono', 'SF Mono', 'Fira Code', monospace;
+  letter-spacing: -0.02em;
+}
+
+/* ============================================
+   GLASS CARD - The PhishGuard Way
+   ============================================ */
+
+.glass-card {
+  background: rgba(24, 24, 27, 0.5);
+  border: 1px solid var(--border-default);
+  backdrop-filter: blur(12px);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(16, 185, 129, 0.5);
+}
+
+/* Highlight card - top border glow */
+.highlight-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.highlight-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cyber-emerald), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.highlight-card:hover::before {
+  opacity: 1;
+}
+
+/* ============================================
+   BUTTONS - Glow Action
+   ============================================ */
+
+.btn-glow {
+  background: var(--cyber-emerald);
+  color: #000;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+  transition: all 0.2s ease;
+}
+
+.btn-glow:hover {
+  box-shadow: 0 0 25px rgba(16, 185, 129, 0.6);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-secondary);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-default);
+  cursor: pointer;
+  font-size: 0.875rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.15s ease;
+}
+
+.btn-secondary:hover {
+  background: var(--bg-hover);
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+}
+
+/* ============================================
+   SIDEBAR - Slim Glassmorphism
+   ============================================ */
+
+.sidebar {
+  width: 220px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: rgba(11, 14, 20, 0.8);
+  backdrop-filter: blur(20px);
+  border-right: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  z-index: 50;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 0.875rem;
+  margin: 0.125rem 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-weight: 450;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-decoration: none;
+}
+
+.nav-item:hover {
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.nav-item.active {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ============================================
+   BENTO GRID
+   ============================================ */
+
+.bento-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.bento-2x1 {
+  grid-column: span 2;
+}
+
+.bento-1x2 {
+  grid-row: span 2;
+}
+
+/* ============================================
+   METRICS
+   ============================================ */
+
+.metric-value {
+  font-family: 'Geist Mono', monospace;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.metric-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+.metric-delta {
+  font-size: 0.75rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.metric-delta.up {
+  color: var(--cyber-emerald);
+}
+
+.metric-delta.down {
+  color: var(--high-voltage-orange);
+}
+
+/* ============================================
+   STATUS INDICATORS
+   ============================================ */
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-dot.active {
+  background: var(--cyber-emerald);
+  box-shadow: 0 0 8px var(--cyber-emerald);
+}
+
+.status-dot.warning {
+  background: var(--high-voltage-orange);
+  box-shadow: 0 0 8px var(--high-voltage-orange);
+}
+
+.status-dot.inactive {
+  background: var(--text-muted);
+}
+
+/* Status badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 4px;
+}
+
+.badge-success {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--cyber-emerald);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.badge-warning {
+  background: rgba(249, 115, 22, 0.1);
+  color: var(--high-voltage-orange);
+  border: 1px solid rgba(249, 115, 22, 0.2);
+}
+
+.badge-neutral {
+  background: rgba(161, 161, 170, 0.1);
+  color: var(--text-secondary);
+  border: 1px solid rgba(161, 161, 170, 0.2);
+}
+
+/* ============================================
+   DATA TABLE
+   ============================================ */
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.data-table td {
+  padding: 0.875rem 1rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.data-table tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.data-table td:first-child {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* ============================================
+   GAUGE - Automotive Style
+   ============================================ */
+
+.gauge-container {
+  position: relative;
+  width: 160px;
+  height: 160px;
+}
+
+.gauge-bg {
+  fill: none;
+  stroke: var(--zinc-800);
+  stroke-width: 12;
+}
+
+.gauge-fill {
+  fill: none;
+  stroke-width: 12;
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: center;
+  transition: stroke-dashoffset 1s ease;
+}
+
+.gauge-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-in {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+.stagger>* {
+  opacity: 0;
+  animation: fadeIn 0.4s ease forwards;
+}
+
+.stagger>*:nth-child(1) {
+  animation-delay: 0.02s;
+}
+
+.stagger>*:nth-child(2) {
+  animation-delay: 0.04s;
+}
+
+.stagger>*:nth-child(3) {
+  animation-delay: 0.06s;
+}
+
+.stagger>*:nth-child(4) {
+  animation-delay: 0.08s;
+}
+
+.stagger>*:nth-child(5) {
+  animation-delay: 0.1s;
+}
+
+.stagger>*:nth-child(6) {
+  animation-delay: 0.12s;
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--zinc-700);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--zinc-700);
+}
